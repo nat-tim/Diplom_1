@@ -1,16 +1,22 @@
+import com.github.javafaker.Faker;
 import org.junit.Assert;
 import org.junit.Test;
 import praktikum.Bun;
+import praktikum.IngredientType;
 
 public class TestBun {
-    private final Bun bun = new Bun("just bun", 0.0f);
+    static Faker faker = new Faker();
+    public final String name = faker.food().ingredient();
+    public final float price = (float) faker.number().randomDouble(2,1, 1000);
+    private final Bun bun = new Bun(name, price);
+
     @Test
     public void shouldBeReturnName() {
-        Assert.assertEquals("just bun", bun.getName());
+        Assert.assertEquals(name, bun.getName());
     }
 
     @Test
     public void shouldBeReturnPrice() {
-        Assert.assertEquals(0.0f, bun.getPrice(), 0.000001);
+        Assert.assertEquals(price, bun.getPrice(), 0.000001);
     }
 }

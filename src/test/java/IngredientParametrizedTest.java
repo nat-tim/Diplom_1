@@ -1,3 +1,4 @@
+import com.github.javafaker.Faker;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -10,7 +11,7 @@ import static praktikum.IngredientType.SAUCE;
 
 @RunWith(Parameterized.class)
 public class IngredientParametrizedTest {
-
+    static Faker faker = new Faker();
     public final IngredientType type;
     public final String name;
     public final float price;
@@ -23,8 +24,8 @@ public class IngredientParametrizedTest {
     @Parameterized.Parameters
     public static Object[][] getCredentials() {
         return new Object[][]{
-                {SAUCE, "сметанез", 0.01f},
-                {FILLING, "бланшированна капуста", 1.00f},
+                {SAUCE, faker.food().ingredient(), (float) faker.number().randomDouble(2,1, 1000)},
+                {FILLING, faker.food().ingredient(), (float) faker.number().randomDouble(2,1, 1000)},
         };
     }
     @Test
